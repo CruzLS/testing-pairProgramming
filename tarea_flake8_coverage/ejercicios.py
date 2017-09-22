@@ -1,15 +1,11 @@
 import math
 
-"""
-    Autor: Diego Misael Blanco Murillo.
-    Fecha: 06/SEP/17
-"""
-
 
 class Ejercicios():
 
     def __init__(self):
         self.resultado = 0
+        self.metrosCM = 0.0
 
     def obtener_resultado(self):
         return self.resultado
@@ -54,25 +50,40 @@ class Ejercicios():
 
     def area_circulo(self, radio):
         try:
+            self.radio = self.numValidator(radio)
             self.resultado = 3.1416 * (radio**2)
-        except:
+        except ValueError as valEr:
             self.resultado = 'Datos incorrectos'
 
     def metros_pies_pulgadas(self, metros):
         try:
             self.medidas = list()
             self.metrosCM = metros*100
-            self.pulgadas = metrosCM/2.54
-            self.pies = metrosCM/30.48
-            self.medidas.append(self.pulgadas)
-            self.medidas.append(self.pies)
+            self.pulgadas = self.metrosCM/2.54
+            self.pies = self.metrosCM/30.48
+            self.medidas.insert(0,self.pulgadas)
+            self.medidas.insert(1,self.pies)
 
-            self.resultado = self.medidas
+            return self.medidas
         except:
-            self.resultado = 'Datos incorrectos'
+            return "Datos incorrectos"   
 
     def elevar_al_cubo(self, numero):
         self.resultado = numero ** 3   
 
-    def kilos_a_gr_lb_tons(kilos):
+    def kilos_a_gr_lb_tons(self, kilos):
+        try:
+            self.unidadeaPeso = list()
+            self.kgGr = kilos * 1000
+            self.kgLib = kilos * 2.20461999989109
+            self.kgTons = kilos * 0.001
+            self.unidadeaPeso.insert(0,self.kgGr)
+            self.unidadeaPeso.insert(1,self.kgLib)
+            self.unidadeaPeso.insert(2,self.kgTons)
+
+            return self.unidadeaPeso
+        except:
+             return "Datos incorrectos"           
                         
+    def numValidator(self,num):
+        return int(num)                    

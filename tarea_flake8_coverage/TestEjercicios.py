@@ -29,22 +29,58 @@ class CalculadoraTest(unittest.TestCase):
 	def test_salario_obrero(self):
 		self.ejer.salario_obrero(200,160)	
 		self.assertEquals(self.ejer.obtener_resultado(), 240)
+
+	def test_salario_obrero_negativos(self):
+		self.ejer.salario_obrero(-200,-160)	
+		self.assertEquals(self.ejer.obtener_resultado(), -240)
+
+	def test_salario_obrero_sin_porcentaje(self):
+		self.ejer.salario_obrero(200,0)	
+		self.assertEquals(self.ejer.obtener_resultado(), 200)		
 			
-	def test_area_circulo(self):
+	def test_area_circulo_radio_int(self):
 		self.ejer.area_circulo(6)
 		self.assertEquals(self.ejer.obtener_resultado(), 113.0976)
 
-	"""def test_metros_a_pies_y_pulgadas(self):
-		self.ejer.metros_pies_pulgadas(5)
-		self.assertEquals(self.ejer.obtener_resultado(),[196.850393701,16.404199475])"""
+	def test_area_circulo_radio_float(self):
+		self.ejer.area_circulo(6.5)
+		self.assertEquals(self.ejer.obtener_resultado(), 132.7326)
+		
+	def test_area_circulo_radio_negativo(self):
+		self.ejer.area_circulo(-6)
+		self.assertEquals(self.ejer.obtener_resultado(), 113.0976)		
+		
+
+	def test_metros_a_pies_y_pulgadas_un_metro(self):
+		self.assertEquals(self.ejer.metros_pies_pulgadas(1),[39.37007874015748, 3.2808398950131235])
+
+	def test_metros_a_pies_y_pulgadas_numero_negativo(self):
+		self.assertEquals(self.ejer.metros_pies_pulgadas(-1),[-39.37007874015748, -3.2808398950131235])
+		
+	def test_metros_a_pies_y_pulgadas(self):
+		self.assertEquals(self.ejer.metros_pies_pulgadas(5),[196.8503937007874,16.404199475065617])		
 
 	def test_elevar_al_cubo_un_numero(self):
 		self.ejer.elevar_al_cubo(3)
-		self.assertEquals(self.ejer.obtener_resultado(), 27)	
+		self.assertEquals(self.ejer.obtener_resultado(), 27)
 
-	def test_peso_a_gramos_libras_tons(self):
-		self.ejer.kilos_a_gr_lb_tons(70)	
-		self.assertEquals(sel.ejer.obtener_resultado(),)
+	def test_elevar_al_cubo_un_numero_negativo(self):
+		self.ejer.elevar_al_cubo(-1)
+		self.assertEquals(self.ejer.obtener_resultado(), -1)
+
+	def test_elevar_al_cubo_cero(self):
+		self.ejer.elevar_al_cubo(0)
+		self.assertEquals(self.ejer.obtener_resultado(), 0)			
+
+	def test_peso_a_gramos_libras_tons(self):	
+		self.assertEquals(self.ejer.kilos_a_gr_lb_tons(70),[70000,154.3233999923763,0.07])
+
+	def test_peso_a_gramos_libras_tons_kg_cero(self):	
+		self.assertEquals(self.ejer.kilos_a_gr_lb_tons(0),[0,0.0,0.0])
+
+	def test_peso_a_gramos_libras_tons_kg_letras(self):	
+		self.assertEquals(self.ejer.kilos_a_gr_lb_tons("KIlos"), "Datos incorrectos")	
+	
 
 	def tearDown(self):
 		pass
